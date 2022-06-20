@@ -12,9 +12,24 @@ class GetAllNotificationsService {
       where: {
         user_id,
       },
+      include: {
+        blood_bank: true,
+      },
+      orderBy: {
+        created_at: "desc",
+      },
     })
 
-    return notifications
+    const notificationsWithoutPasswordHash = notifications.map(notification => {
+      const { blood_bank } = notification
+      const { password_hash, ...blood_bank_without_password_hash } = blood_bank
+      return {
+        ...notification,
+        blood_bank: blood_bank_without_password_hash,
+      }
+    })
+
+    return notificationsWithoutPasswordHash
   }
 }
 

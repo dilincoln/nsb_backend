@@ -45,8 +45,10 @@ async function main() {
     const bloodBank = await prisma.bloodBank.create({
       data: b,
     })
+
     console.log(`Created BloodBank with id: ${bloodBank.id}`)
   }
+
   console.log(`Seeding finished.`)
 }
 
