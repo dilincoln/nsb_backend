@@ -28,6 +28,6 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   })
 })
 
-app.listen(3333, () => {
+app.listen(2333, () => {
   console.info("Server started on port 3333 🚀")
 })

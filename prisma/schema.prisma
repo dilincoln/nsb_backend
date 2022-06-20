@@ -27,6 +27,7 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
+  Notification Notification[]
   @@map("users")
 }
 
@@ -45,6 +46,7 @@ model Address {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
+  BloodBank BloodBank[]
   @@map("addresses")
 }
 
@@ -56,4 +58,35 @@ model Token {
   created_at DateTime @default(now())
 
   @@map("tokens")
+}
+
+model Notification {
+  id         String    @id @default(uuid()) @db.Uuid
+  user_id    String?   @db.Uuid
+  receiver   String?
+  blood_type String?
+  end_date   DateTime?
+  start_date DateTime?
+
+  user User? @relation(fields: [user_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("notifications")
+}
+
+model BloodBank {
+  id            String  @id @default(uuid()) @db.Uuid
+  active        Boolean @default(true)
+  cnpj          String
+  name          String
+  email         String
+  password_hash String
+  address_id    String  @db.Uuid
+
+  address Address @relation(fields: [address_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

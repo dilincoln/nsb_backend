@@ -1,7 +1,8 @@
 import { Router } from "express"
 
+import ensureAuthenticated from "../../middlewares/ensureAuthenticated"
 import CreateUserService from "../../services/user/CreateUserService"
-import GetAllUserService from "../../services/user/GetAllUserService"
+import UpdateUserService from "../../services/user/UpdateUserService"
 
 const userRoutes = Router()
 
@@ -47,16 +48,59 @@ userRoutes.post("/", async (request, response) => {
   return response.json(user)
 })
 
-userRoutes.get("/", async (request, response) => {
-  const { includeRelations } = request.query
+// userRoutes.get("/", async (request, response) => {
+//   const { includeRelations } = request.query
 
-  const getAllUserService = new GetAllUserService()
+//   const getAllUserService = new GetAllUserService()
 
-  const users = await getAllUserService.execute({
-    includeRelations: includeRelations === "true",
+//   const users = await getAllUserService.execute({
+//     includeRelations: includeRelations === "true",
+//   })
+
+//   return response.json(users)
+// })
+
+userRoutes.use(ensureAuthenticated)
+
+userRoutes.put("/", async (request, response) => {
+  const {
+    name,
+    email,
+    birth_date,
+    blood_type,
+    city,
+    complement,
+    district,
+    cpf,
+    gender,
+    number,
+    state,
+    street,
+    zip_code,
+  } = request.body
+
+  const { id } = request.client
+
+  const updateUserService = new UpdateUserService()
+
+  const updatedUser = await updateUserService.execute({
+    id,
+    name,
+    email,
+    birth_date,
+    blood_type,
+    city,
+    complement,
+    district,
+    cpf,
+    gender,
+    number,
+    state,
+    street,
+    zip_code,
   })
 
-  return response.json(users)
+  return response.json(updatedUser)
 })
 
 export default userRoutes
