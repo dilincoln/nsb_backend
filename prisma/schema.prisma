@@ -92,4 +92,6 @@ model BloodBank {
   created_at   DateTime       @default(now())
   updated_at   DateTime       @updatedAt
   Notification Notification[]
+
+  @@map("blood_banks")
 }

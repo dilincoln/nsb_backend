@@ -2,9 +2,11 @@
 
 # Como usar o nosso sangue bom API?
 
-1. Configure a conexão do banco de dados no arquivo .env . Segue exemplo:
+1. Configure a conexão do banco de dados no arquivo .env na pasta raiz do projeto.Segue exemplo:
 
-`DATABASE_URL="postgresql://USUÁRIO:SENHA@IP:PORTA/BANCO_DE_DADOS?schema=public"`
+```
+DATABASE_URL="postgresql://USUÁRIO:SENHA@IP:PORTA/BANCO_DE_DADOS?schema=public"
+```
 
 2. Execute o comando `npm install` ou `yarn install`
 
