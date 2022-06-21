@@ -1,5 +1,7 @@
 # Nosso Sangue Bom API
 
+Final Project for the Associate's degree of System Development in SENAI CIMATEC Salvador - BA test
+
 # Como usar o nosso sangue bom API?
 
 1. Configure a conexão do banco de dados no arquivo .env na pasta raiz do projeto.Segue exemplo:
@@ -17,3 +19,7 @@ DATABASE_URL="postgresql://USUÁRIO:SENHA@IP:PORTA/BANCO_DE_DADOS?schema=public"
 5. Execute o comando `npm run seed` ou `yarn seed` para aplicar as seeds
 
 6. Execute o comando `npm run dev` ou `yarn dev` para iniciar o servidor na porta :2333
+
+# Db Diagram
+
+![db diagram](db_diagram.png)
